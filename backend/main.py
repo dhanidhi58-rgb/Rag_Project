@@ -4,13 +4,13 @@ prompt, model, structured parsing) is imported from routing/, retrieval/,
 and generation/ — this file just plugs them together behind one endpoint.
 """
 
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager ##for timeout , retrival k paas queery aaye toh time namage
 
 from dotenv import load_dotenv
 load_dotenv()
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel ##for validation
 
 from routing.query_router import classify_query
 from retrieval.retriever import get_retriever
@@ -24,7 +24,7 @@ async def lifespan(app: FastAPI):
     # Warm up embeddings + vectorstore at startup itself, so the first
     # real user query never has to wait for the HF model download.
     get_retriever()
-    yield
+    yield #   ;.#pause
 
 
 app = FastAPI(title="RAG Teaching API", lifespan=lifespan)
